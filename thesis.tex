@@ -1,0 +1,159 @@
+\documentclass[openany]{book}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{adjustbox}
+\usepackage{subfigure}
+\usepackage{pifont}
+\usepackage{cleveref}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+% Additional required packages and setup
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+
+% Document styling
+\setlength{\parindent}{2em}
+\setlength{\parskip}{1em}
+% 11 point font size is recommended
+
+% Non-CVSSP members only: If you want to make your thesis fatter, you can
+% print single-sided by adding "oneside" to the documentclass options:
+%\documentclass[oneside,11pt]{book} 
+
+\input{math_commands.tex}
+
+\usepackage{a4,graphicx,UniSThesis} 
+
+\usepackage{amsmath,amsfonts,bm}
+\usepackage{amsthm}
+\usepackage{bookmark}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{eucal}
+\usepackage[perpage]{footmisc}
+\usepackage{ifthen}
+\usepackage{ifpdf}
+\usepackage{nomencl}
+\usepackage{longtable}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[capitalise]{cleveref}
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{subfigure}
+\usepackage{adjustbox}
+\usepackage{pifont}
+\usepackage{xcolor}
+\newtheorem{theorem}{Theorem}
+\usepackage{wrapfig}
+\usepackage[authoryear,round]{natbib}
+
+
+\geometry{a4paper, margin=1in} % Adjust margins as needed
+
+\makenomenclature
+\renewcommand{\arraystretch}{1.5} % Adjust row height here
+\renewcommand\nomgroup[1]{%
+  \ifthenelse{\equal{#1}{A}}{%
+   \item[\textbf{Roman Symbols}] }{%             A - Roman
+    \ifthenelse{\equal{#1}{G}}{%
+     \item[\textbf{Greek Symbols}]}{%             G - Greek
+      \ifthenelse{\equal{#1}{R}}{%
+        \item[\textbf{Superscripts}]}{%              R - Superscripts
+          \ifthenelse{\equal{#1}{S}}{%
+           \item[\textbf{Subscripts}]}{{%             S - Subscripts
+	    \ifthenelse{\equal{#1}{X}}{%
+	     \item[\textbf{Other Symbols}]}{{%    X - Other Symbols
+	    \ifthenelse{\equal{#1}{Z}}{%
+	     \item[\textbf{Acronyms}]}%              Z - Acronyms
+              			{{}}}}}}}}}}
+%\setcounter{secnumdepth}{2}  % sets the depth of sections that get numbered
+%\setcounter{tocdepth}{3}     % sets the depth of sections in Contents
+%  N.B. tocdepth should always be 1 more than secnumdepth
+
+% these 3 lines are compulsory:
+\title{Southern University of Science and Technology Doctoral Dissertation Proposal}
+\author{W.J.~Christmas} \centre{Centre for Vision, Speech and Signal
+  Processing}
+
+
+
+% When thesis is submitted, fix publication date using 2 lines like these:
+\renewcommand{\month}{6}
+\renewcommand{\year}{1995}
+\renewcommand{\arraystretch}{0.8} % Reduce spacing between rows
+
+% Dedication, summary, keywords and acknowledgements are compulsory (although they 
+% may be empty), but you can put them all in an "\include" file, if you prefer.
+
+\dedication
+{
+\input{Dedication/dedication}
+}
+
+\summary{
+\input{Abstract/abstract.tex}
+}
+
+\keywords{Scientific machine learning, computational mathematics, Partial differential equation, physics-informed neural network, Kolmogorov-arnold network, Sinc approximation.}
+\email{12131375@mail.sustech.edu.cn}
+
+%\acknowledgements
+%{
+%\input{Acknowledgement/acknowledgement.tex}
+%}
+
+
+% Comment out this line when you want to compile the whole thesis; 
+% otherwise just include chapters you are currently working on:
+% \includeonly{Chapter1/chapter1,Chapter2/chapter2,Chapter3/chapter3,Appendix1/appendix1, Appendix2/appendix2} 
+
+
+\begin{document}
+
+% This inserts the front page, as well as the summary & acknowledgements
+% defined above (a bit like "\maketitle").
+\frontmatter
+\makefront
+ 
+\tableofcontents  % include  list of figs. etc. here also, if required
+% \listoffigures
+% \printnomenclature
+% \addcontentsline{toc}{chapter}{Nomenclature}
+
+\mainmatter
+
+%Unfortunately most people like to pad out their thesis to make it look bigger,
+%so use this line for 1.5 x spacing:
+\renewcommand{\baselinestretch}{1.5}\small\normalsize   
+
+% At last you can put in the serious work:
+\include{Introduction/introduction}
+
+\include{Chapter1/chapter1}
+\include{Chapter2/chapter2}
+\include{Chapter3/chapter3}
+% etc.
+% etc.
+\include{Conclusions/conclusions}
+
+\appendix
+\include{Appendix1/appendix1}
+\include{Appendix2/appendix2}
+
+% use this line if you want bibs to appear in table of contents:
+\backmatter
+\addcontentsline{toc}{chapter}{Bibliography} 
+
+\bibliography{References/references} % put your favourite Bibtex archive references here
+\bibliographystyle{plainnat}
+
+\end{document}
+

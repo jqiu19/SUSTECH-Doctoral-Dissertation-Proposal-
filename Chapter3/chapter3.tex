@@ -1,0 +1,356 @@
+% \chapter{My Third Chapter}
+% \ifpdf
+%     \graphicspath{{Chapter3/Chapter3Figs/PNG/}{Chapter3/Chapter3Figs/PDF/}{Chapter3/Chapter3Figs/}}
+% \else
+%     \graphicspath{{Chapter3/Chapter3Figs/EPS/}{Chapter3/Chapter3Figs/}}
+% \fi
+
+% \section{First Section of the Third Chapter}
+% \markboth{\MakeUppercase{\thechapter. My Third Chapter }}{\thechapter. My Third Chapter}
+% And now I begin my third chapter here ...
+
+% \subsection{first subsection in the First Section}
+% ... and some more 
+
+% \subsection{second subsection in the First Section}
+% ... and some more ...
+
+% \subsubsection{first subsub section in the second subsection}
+% ... and some more in the first subsub section otherwise it all looks the same
+% doesn't it? well we can add some text to it ...
+
+% \subsection{third subsection in the First Section}
+% ... and some more ...
+
+% \subsubsection{first subsub section in the third subsection}
+% ... and some more in the first subsub section otherwise it all looks the same
+% doesn't it? well we can add some text to it and some more and some more and
+% some more and some more and some more and some more and some more ...
+
+% \subsubsection{second subsub section in the third subsection}
+% ... and some more in the first subsub section otherwise it all looks the same
+% doesn't it? well we can add some text to it ...
+
+% \section{Second Section of the Third Chapter}
+% \markboth{\MakeUppercase{\thechapter. My Third Chapter }}{\thechapter. My Third Chapter}
+% and here I write more ...
+
+\chapter{Research plan for PhD thesis}
+
+\section{Extension of SincKAN}
+
+\subsection{Strengths and weaknesses of SincKAN: a reflection from ICLR 2025 Conference Formal Reviews}
+
+Our early-stage work, \textbf{"Sinc Kolmogorov-Arnold Network and Its Applications on Physics-Informed Neural Networks"}, was submitted to the \textit{Thirteenth International Conference on Learning Representations (ICLR 2025 Conference)} on October 1, 2024. ICLR is among the top three machine learning conferences and is a premier gathering of industrial and academic professionals dedicated to the branch of artificial intelligence generally referred to as deep learning.
+
+Based on feedback from four ICLR reviewers, we summarize the strengths of SincKAN as follows:
+\begin{enumerate}
+    \item \textbf{Superior Performance:} Compared to other state-of-the-art deep learning models, SincKAN demonstrates superior performance in approximating functions and solving PDEs with singularities. Additionally, SincKAN achieves near-SOTA performance across various computational cases, ranging from one dimension to 100 dimensions.
+    \item \textbf{Innovation and Range Expansion:} SincKAN broadens the application range, enhances the accuracy, and introduces novelty to the Kolmogorov-Arnold Network by replacing cubic splines with Sinc interpolants.
+    \item \textbf{Theoretical Guarantees:} Theorems presented in \cref{Theorem: Stenger} and \cref{Theorem: transformation} offer theoretical guarantees for the convergence and accuracy of SincKAN. Furthermore, the Multi-h approach provides an effective strategy to address the challenge of selecting the optimal step size.
+
+\end{enumerate}
+
+At the same time, some criticisms exist regarding the limitations of SincKAN:
+    \begin{enumerate}
+    \item \textbf{Limited Scope of Computational Cases:} Some reviewers noted that most numerical experiments focus on one-dimensional function fitting and PDE solution fitting. The functions and PDEs tested are somewhat artificial and simplistic, lacking the complexity and irregular behavior typically encountered in high-dimensional practical modeling scenarios.
+
+    \item \textbf{Restricted Advantages of the SincKAN Model:} While the SincKAN model demonstrates exceptional performance in handling functions and PDEs with singularities, it occasionally falls short of achieving the highest accuracy when approximating smoother functions and PDEs.
+\end{enumerate}
+
+
+\subsection{Testing SincKAN on high-dimensional functions and fractional PDE problems}
+In order to improve the credibility and comprehensiveness of our work on SincKAN, I suggest adding more numerical experiments on high-dimensional functions and boundary layer problems. 
+\begin{enumerate}
+    \item To strengthen the evaluation of SincKAN, we can include numerical experiments on higher-dimensional functions and PDEs, such as two-dimensional, four-dimensional, and 100-dimensional cases. Potential test cases could involve complex systems like the high-dimensional Schrödinger equation.
+
+    \item Addressing reviewer concerns about the applicability of the tested functions and PDEs, we could incorporate numerical examples derived from practical scenarios, such as seizure wave patterns, cardiovascular signals, or other real-world phenomena. Additionally, introducing noise to the provided functions and PDEs could enhance their stochasticity, better mimicking real-world signals.
+
+    \item Fractional partial differential equations constitute a crucial class of models with extensive applications in anomalous diffusion processes, viscoelastic material modeling, and cancer cell growth modeling. Due to the singularity, non-locality, and other unique characteristics of solutions to fractional differential equations, traditional numerical methods still face significant challenges in addressing these problems. We shall try to use SincKAN to learn and fit fractional partial differential equations.
+\end{enumerate}
+
+\subsection{Other possible extensions}
+
+\subsubsection*{Alternative Basis Functions}
+Exploring alternative basis functions or combinations of basis functions, beyond Sinc approximation and Chebyshev polynomials, could potentially lead to improved approximation accuracy or computational efficiency for certain classes of functions. For example, it is well known that the sinc funtion is related to the zeroth-order spherical Bessel function of the first kind $j_{0}(x)$. In particular, the equality $sinc(x) = j_{0} (\pi x)$ holds, thus it is natural to consider choosing spherical Bessel function of the first kind $j_{n} (x)$ as the basis functions as a generalization of SincKAN.
+
+\subsubsection*{Adaptive Degree Selection}
+Developing techniques for automatically determining the appropriate degree and scaling parameters in SincKAN based on the complexity of the target function could enhance the flexibility and generalization capabilities of the corresponding KAN layer.
+
+\subsubsection*{Regularization and Training Strategies}
+Investigating effective regularization techniques and training strategies tailored to the SincKAN layer’s architecture could improve convergence, generalization, and robustness in practical applications.
+
+\subsubsection*{Integration with Other Neural Network Architectures}
+
+Combining the KAN layer with other neural network architectures, such as neural ODE and physics-informed neural networks, could lead to novel hybrid approaches for function approximation and open up new applications in fields like climate science, fluid modeling, generative modeling, and industrial intelligent manufacturing.
+
+\begin{itemize}
+    \item \textbf{Neural ODE}: A neural architecture that utilizes a neural network to parametrize the vector field of a differential equation. The goal is to learn the vector field parameters from real-world data. In general, a neural ordinary differential equation \cite{chen2018neural} is of the following form:
+    \begin{align}
+        y(0) &= y_0 \\
+        \frac{dy}{dt}(t) &= f_\theta(t, y(t)).
+    \end{align}
+    
+    Here, \(\theta\) represents some vector of learned parameters, \(f_\theta : \mathbb{R} \times \mathbb{R}^{d_1 \times \cdots \times d_k} \to \mathbb{R}^{d_1 \times \cdots \times d_k}\) is any standard neural architecture, and \(y : [0, T] \to \mathbb{R}^{d_1 \times \cdots \times d_k}\) is the solution. For many applications, \(f_\theta\) will just be a simple feedforward network, but it is possible to replace this with KANs. KAN-ODEs \cite{koenig2024kan} is an initial attempt to combine these two powerful architectures, which shows promising improvement in a wide array of metrics including training accuracy, testing accuracy, convergence speed, neural scaling rate and generalizability compared to MLP-based neural ODEs. Our future research could explore further improvement of KAN-ODEs performance by integrating ChebyKAN, SincKAN, FourierKAN architectures. Another opportunity is to apply KAN-ODEs to tasks across science, economics, engineering, finance where non-neural ODE have already applied.
+
+    \item \textbf{Neural SDE}: A neural architecture that utilizes a neural network to parametrize some function terms of a stochastic differential equation. The goal is to learn the SDE model parameters from real-world data. In general, a neural stochastic differential equation is a model of the form
+    \begin{align}
+        y(0) &= \zeta_\theta(v), \\
+        dy(t) &= \mu_\theta(t, y(t)) \, dt + \sigma_\theta(t, y(t)) \, \circ \, dw(t), \\
+        x(t) &= \alpha_\theta y(t) + \beta_\theta,
+    \end{align}
+    for \( t \in [0, T] \), with \( y : [0, T] \to \mathbb{R}^{d_y} \) the (strong) solution to the SDE. Collectively, \(\zeta_\theta\), \(\mu_\theta\), \(\sigma_\theta\), \(\alpha_\theta\), and \(\beta_\theta\) are neural networks parameterized by \(\theta\).
+
+The objective will be to train \(\theta\) so that the distribution of the model \(x\) is approximately equal to the distribution of the data \(x_{\text{true}}\). (For some notion of ‘approximate’.) Unsurprisingly, integration of KAN and neural SDE is still an unexplored zone: works remain to be done on designing more efficient neural SDE architecture, finding expressive choices of vector field, and determining how to train these models effectively. Another promising direction is to apply them to myriad scientific machine learning tasks.
+
+    \item \textbf{PINN}: Integration of KAN and physics-informed neural network have been experimented by \cite{wang2024kolmogorov} and this new model is called PIKAN. More works could be done to improve the accuracy and efficiency of PIKAN. We could also consider integration of SincKAN, ChebyKAN, Wav-KAN into PINN.
+\end{itemize}
+
+
+\subsubsection*{Theoretical Analysis}
+Conducting further theoretical analyses of SincKAN layer’s approximation properties, computational complexity, and convergence behavior could provide valuable insights and guide future developments in this area.
+
+
+\section{Physics-informed neural networks for recovering phase-field equations}
+
+\subsection{Background}
+Phase-field modeling is a powerful computational framework for simulating the evolution of microstructures in various physical systems. Unlike classical sharp interface models, which require explicit tracking of moving interfaces, phase-field methods represent the system's state continuously with an order parameter, allowing interfaces to be treated as diffuse regions. This approach eliminates the need for complex remeshing or tracking algorithms, making it highly efficient and robust for simulating phenomena involving evolving boundaries. Suppose we are modeling a microstructure composing of two immiscible, incompressible Newtonian fluids. An order parameter $\phi$ is employed to denote the regions occupied by these two fluids,
+\[
+\phi(x, t) =
+\begin{cases} 
+1 & \text{fluid 1}, \\
+-1 & \text{fluid 2},
+\end{cases}
+\]
+with a thin smooth transition layer of thickness $\eta$ connecting the two fluids. The set of values of the order parameter over the entire microstructure is called the phase field. The main purpose of phase field modeling is to construct model equation to recover the interfacial dynamics of these two fluids. A phase field model can often be constructed if one knows the free energy of the system. The free energy is often derived using statistical physics and takes the following form:
+\begin{equation}
+    W( \phi, \nabla \phi ) = \lambda \int_{\Omega} ( \frac{1}{2}  |\nabla \phi|^2 + F( \phi ) ) dx,
+\end{equation}
+where $\lambda$ denotes the mixing energy density and the two terms in the integral represent hydro-philic and hydro-phobic properties of the two-phase flow. In practices, the free energy $W$ needs to be chosen with care as it has a great influence on the modeling results. Common choices are Ginsburg-Landau free energy ($F( \phi ) = \frac{1}{4 \eta^2} ( \phi^2 - 1 )^2$) and the Flory-Huggins free energy $F( \phi ) = (1 + \phi) \ln{(1 + \phi)} + (1 - \phi) \ln{(1 - \phi)}$.
+
+The dynamics of the order parameter $\phi$ is described by a gradient flow driven by the variational derivative of $W$:
+\begin{equation}
+    \phi_t + (u \cdot \nabla) \phi = -\gamma \mathcal{L}\frac{\delta W}{\delta \phi},
+\end{equation}
+where $u$ is the flow velocity, $\mathcal{L}$ is an operator. One can take the variational derivative $\frac{\delta W}{\delta \phi}$ in $L^2$ leading to the non-conserved Allen-Cahn phase equation
+\begin{equation}
+    \phi_t + (u \cdot \nabla) \phi = \gamma (\Delta \phi - F'( \phi )).
+\end{equation}
+Alternatively, one can take the variational derivative in $H^{-1}$ and get the Cahn-Hilliard phase equation
+\begin{equation}
+    \phi_t + (u \cdot \nabla) \phi = -\gamma \Delta (\Delta \phi - F'( \phi )).
+\end{equation}
+In our proposed research project, we will first consider the case $u = 0$ in the Allen-Cahn equation. Our task is to use machine learning to recover the nonlinear term $F$ in the free energy by utilizing experimental data $\phi$. Our research project has the potential to incorporate machine learning techniques into phase field modeling, leading to new phase-field modeling algorithms with improved accuracy and efficiency.
+
+\subsection{Literature review}
+Deep learning has become a transformative approach in the field of computational materials science, particularly in phase-field modeling, which traditionally requires significant computational resources. The ability of deep learning to approximate solutions to complex systems has led to the development of various methods that leverage this capability to accelerate phase-field simulations. These methods, which include Physics-Informed Neural Networks (PINNs) and DeepONet, have shown promise in reducing computational costs while maintaining accuracy.
+
+In recent work, \cite{hu2022accelerating} presented an approach that utilizes recurrent neural networks (RNNs) to learn the microstructure evolution in latent space, significantly reducing the computational expense associated with phase-field models. They conducted a comprehensive analysis comparing different dimensionality-reduction methods and RNN types, finding that an autocorrelation-based principal component analysis (PCA) method, combined with LSTM and GRU RNN implementations, provided a considerable computational speedup with comparable accuracy to high-fidelity phase-field predictions.
+
+\cite{montes2021accelerating} further advanced this field by developing a data-driven surrogate model that combines phase-field simulations with history-dependent machine learning. Their model, which employs either time-series multivariate adaptive regression splines (TSMARS) or LSTM neural networks, demonstrated the ability to predict the nonlinear microstructure evolution of a two-phase mixture during spinodal decomposition with a significant reduction in computational time, offering a promising path forward for materials design and optimization.
+
+\cite{ghaffari2023deep} explored the potential of physics-informed neural networks (PINNs) for brittle fracture phase-field problems. They investigated various PINN techniques, including original PINNs, variational PINNs (VPINNs), and variational energy PINNs (VE-PINNs), and examined different boundary condition imposition methods. Their study highlighted the challenges in learning the complex fracture processes accurately and efficiently, providing insights into the computational cost associated with different approaches.
+
+\cite{li2023phase} proposed the "Phase-Field DeepONet" framework, a physics-informed operator neural network that predicts the dynamic responses of systems governed by gradient flows of free-energy functionals. This framework incorporates the minimizing movement scheme, which optimizes the total free energy of a system, and has been validated using the Allen-Cahn and Cahn-Hilliard equations. The trained operator neural networks can act as explicit time-steppers, enabling fast real-time predictions of pattern-forming dynamical systems.
+
+\cite{goswami2020transfer} introduced a physics-informed neural network algorithm that minimizes the variational energy of the system for solving brittle fracture problems. They modified the neural network output to exactly satisfy boundary conditions, simplifying the loss function and enhancing computational efficiency. The authors proposed using non-uniform rational basis spline (NURBS) patches for accurate geometric modeling and Gauss quadrature rules for efficient numerical integration. They also introduced the concept of transfer learning to enhance the computational efficiency of the proposed approach, which was applied to six fracture mechanics problems, showing close agreement with results available in the literature.
+
+The most relevant work for our phase field project is likely \cite{teichert2019machine}. They introduced a novel integrable deep neural network (IDNN) designed to learn the free energy density of a phase-field model by directly ingesting the free energy derivative data. The effectiveness of their IDNN approach was demonstrated through a material physics example: Cu-Zn binary alloy with B2-ordering. The IDNN was trained to the chemical potential data of Cu-Zn binary alloy and it successfully recovered the antiphase boundaries in the material. 
+
+\subsection{Methods}
+Consider the two-dimensional Allen-Cahn phase equation with fluid velocity $u = 0$ and $f( \phi ) = F'( \phi )$,
+\begin{equation}
+\begin{aligned}
+& \phi_t = \gamma (\phi_{xx} + \phi_{yy} - \frac{1}{\epsilon^2} f(\phi)), \quad(x, t) \in \Omega \times(0, T], \\
+& \left.\frac{\partial \phi}{\partial n}\right|_{\partial \Omega}=0
+\end{aligned}
+\end{equation}
+
+\subsubsection{Method 1. PINN}
+Given noisy measurements $\{t^{n}, x_{i}, y_{j}, \phi_{ij}^{n} \}^{n = 1 \sim N}_{i,j = 1 \sim M}$ of the phase field, we are interested in learning the phase field $\phi$ and the derivative of the nonlinear term in the free energy $f$. We can approximate $\phi$ by a neural network and assume 
+\[
+f := FunctionLiby(\phi)
+\]
+where FunctionLiby is a summation of various types of functions dependent on $\phi$, e.g. \[ FunctionLiby(\phi) = P_k (\phi) + R_k (\phi)\] where $P_k$ and $R_k$ are k-th order polynomials and rational polynomial functions with unknown coefficients to be learnt by training the physics-informed neural networks. The loss function is
+\begin{equation*}
+    \begin{align}
+        L &= L_0 + L_b + L_p \notag \\
+        &= \frac{1}{N_{0}} \sum^{N_{0}}_{i=1} |\phi(0,x^{i}_{0}, y^{i}_{0}) - \phi^{i}_{0}|^2 
+        + \frac{1}{N_{b1}} \sum^{N_{b1}}_{i=1} |\phi_{x}(t^{i}_{b},-1, y^{i}_{b}) - \phi^{i}_{x,b,-1,b}|^2 \notag \\
+        &\quad + \frac{1}{N_{b2}} \sum^{N_{b2}}_{i=1} |\phi_{x}(t^{i}_{b},1, y^{i}_{b}) - \phi^{i}_{x,b,1,b}|^2 
+        + \frac{1}{N_{b3}} \sum^{N_{b3}}_{i=1} |\phi_{y}(t^{i}_{b},x^{i}_{b}, -1) - \phi^{i}_{y,b,b,-1}|^2 \notag \\
+        &\quad + \frac{1}{N_{b4}} \sum^{N_{b4}}_{i=1} |\phi_{y}(t^{i}_{b},x^{i}_{b}, 1) - \phi^{i}_{y,b,b,1}|^2 + \frac{1}{N_{p}} \sum^{N_{p}}_{i=1} |\phi_{t}(t^{i}_{p}, x^{i}_{p}, y^{i}_{p}) - \gamma (\phi_{xx}(t^{i}_{p}, x^{i}_{p}, y^{i}_{p}) + \phi_{yy}(t^{i}_{p}, x^{i}_{p}, y^{i}_{p}) \\
+        &- \frac{1}{\epsilon^2} FunctionLiby( \phi(t^{i}_{p}, x^{i}_{p}, y^{i}_{p}) ) |^2
+    \end{align}
+\end{equation*}
+\subsubsection{Method 2. Algebraic equation-informed neural network}
+
+Previous PINN methods heavily depend on the representation space provided by the Function library for $f$. However, this approach presents two significant challenges. First, the available basis functions in the Function library may be insufficient to accurately represent $f$. Second, an excessive number of basis functions can impose additional computational burdens on the optimizer, thereby slowing down the training process.  In this section, we propose a simpler approach to learn \( f \): since our goal is to learn \( f \), we can treat \( \phi \) as an input variable and directly parameterize \( f \) as a neural network \( f(\phi; \theta) \). Additionally, we require the training data \( \{t^{n}, x_{i}, y_{j}, \phi_{ij}^{n}, (\phi_{t})_{ij}^{n}, (\phi_{xx})_{ij}^{n}, (\phi_{yy})_{ij}^{n} \}^{n = 1 \sim N}_{i,j = 1 \sim M} \).\footnote{Here, the training data is defined as follows: \( \phi^{n}_{ij} = \phi(t^{n}, x_{i}, y_{j}) \), \( (\phi_{t})^{n}_{ij} = \phi_{t}(t^{n}, x_{i}, y_{j}) \), \( (\phi_{xx})^{n}_{ij} = \phi_{xx}(t^{n}, x_{i}, y_{j}) \), and \( (\phi_{yy})^{n}_{ij} = \phi_{yy}(t^{n}, x_{i}, y_{j}) \).}
+
+Then we just need to minimize the loss 
+\begin{equation}
+    L = \frac{1}{M^{2}N} \sum^{N}_{n=1} \sum^{M}_{i, j=1} |(\phi_{t})^{n}_{ij} - \gamma ( (\phi_{xx})^{n}_{ij} + (\phi_{yy})^{n}_{ij} - \frac{1}{\epsilon^2} f( \phi^{n}_{ij};\theta ) )|^2
+\label{eq:loss}
+\end{equation}  
+This gives us the first approach for training the neural network. This is equivalent to the following approach: notice that for each $\phi^{n}_{ij}$ we can uniquely determine the value $f( \phi^{n}_{ij} )$ since the Allen-Cahn equation requires
+\begin{equation}
+f( \phi^{n}_{ij} ) = \epsilon^2 ((\phi_{xx})^{n}_{ij} + (\phi_{yy})^{n}_{ij} - \frac{1}{\gamma} (\phi_t)^{n}_{ij} ).
+\label{eq:phi}
+\end{equation}
+Then we can get pairs of training data $\{ \phi^{n}_{ij}, f( \phi^{n}_{ij} ) \}$, which transforms the problem into a function interpolation problem. Indeed, we could recover the loss \cref{eq:loss} through scaling the following loss by $\frac{\gamma^2}{\epsilon^4}$
+\begin{equation}
+    L = \frac{1}{M^{2}N} \sum^{N}_{n=1} \sum^{M}_{i, j=1} |f( \phi^{n}_{ij};\theta ) - f( \phi^{n}_{ij} )|^2
+\label{eq:l}
+\end{equation}
+where $f( \phi^{n}_{ij} )$ is given by \eqref{eq:phi}. Utilizing the ground truth as a reference (in this case, \( f_{ground}( \phi^{n}_{ij} ) =  \phi^{n}_{ij} [(\phi^{n}_{ij})^{2} - 1] \)), we could check the accuracy of our predicted result $f( \phi^{n}_{ij};\theta )$ by the following metrics:
+\begin{equation}
+    \text{MSE} = \frac{1}{M^{2}N} \sum^{N}_{n=1} \sum^{M}_{i,j=1} |f( \phi^{n}_{ij};\theta ) - f_{ground}( \phi^{n}_{ij} )|^2
+\label{eq:p}
+\end{equation}
+and
+\begin{equation} \text{Relative MSE} = \frac{\left\| f\left( \phi^{n}_{ij};\theta \right) - f_{\text{ground}}\left( \phi^{n}_{ij} \right) \right\|_{2}}{\left\| f_{\text{ground}}\left( \phi^{n}_{ij} \right) \right\|_{2}}.
+\label{eq:o}
+\end{equation}
+Although the above proposed methods provide sufficiently good training and validation procedures for learning the free energy, the training data $\{ (\phi_{t})^{n}_{ij}, (\phi_{xx})^{n}_{ij}, (\phi_{yy})^{n}_{ij} \}$ sometimes are not available from the experiment data collection. Hence, we propose to use the following hybrid method to learn the free energy: we first train a neural network $(t,x,y) \longrightarrow \phi(t,x,y)$ by using the data $\{ t^{n},x_{i},y_{j},\phi^{n}_{ij} \}^{n=1 \sim N}_{i,j=1 \sim M}$. Then we use auto-differentiation to get the neural networks $\phi_t (t,x,y)$, $\phi_{xx} (t,x,y)$, $\phi_{yy} (t,x,y)$ and evaluate them on the corresponding coordinates to get $\{ (\phi_{t})^{n}_{ij}, (\phi_{xx})^{n}_{ij}, (\phi_{yy})^{n}_{ij} \}^{n=1 \sim N}_{i,j=1 \sim M}$. This is then followed by the computation and minimization process detailed in \eqref{eq:loss}.
+
+\subsubsection{Method 3. Semi-mechanistic method}
+Method 2 requires derivatives data of order parameter $\phi$ to learn the free energy. However, these derivatives data are often not available in practical modeling. Here we propose a semi-mechanistic method for learning the free energy: we will discretize the derivatives in Allen-Cahn equation as follows,
+
+\begin{equation}
+    \phi^{n+1} = \phi^{n} + \Delta t \gamma [ \Delta_{h} \phi^{n+1} - \frac{1}{\epsilon^2} f( \phi^{n} ) ]
+\end{equation}
+Then we parametrize the $f$ as a neural network $f( \phi; \theta )$ and proceed to minimize the loss
+
+\begin{equation}
+    L = \frac{1}{M^{2}N} \sum^{N}_{n=1} \sum^{M}_{i,j=1} \lvert \phi^{n}_{ij} + \gamma \Delta t [\frac{\phi^{n+1}_{i+1,j} - 2 \phi^{n+1}_{i,j} + \phi^{n+1}_{i-1,j}}{(\Delta x)^2} + \frac{\phi^{n+1}_{i,j+1} - 2 \phi^{n+1}_{i,j} + \phi^{n+1}_{i,j-1}}{(\Delta y)^2} - \frac{1}{\epsilon^2} f( \phi^{n}_{ij}; \theta ) ] - \phi^{n+1}_{ij} \rvert^{2}.
+\end{equation}
+In this method, we merely need $\{ \phi^{n}_{ij} \}^{n=1 \sim N}_{i,j=1 \sim M}$ as training dataset.
+
+
+
+\subsection{Experiments}
+The experimental data is generated from the following procedure:
+$$
+\begin{aligned}
+& \phi_t-\Delta \phi+\frac{1}{\epsilon^2} f(\phi)=0, \quad(x, t) \in \Omega \times(0, T] \\
+& \left.\frac{\partial \phi}{\partial n}\right|_{\partial \Omega}=0
+\end{aligned}
+$$
+
+where $f(\phi)=F^{\prime}(\phi)$ with $F(\phi)=\frac{1}{4}\left(\phi^2-1\right)^2$ be a given energy potential. The Liapunov energy functional
+
+$$
+E(\phi)=\int_{\Omega}\left(\frac{1}{2}|\nabla \phi|^2+\frac{1}{\epsilon^2} F(\phi)\right) d x .
+$$
+
+
+The stabilized first-order semi-implicit method reads (see (4.24) in article)
+
+$$
+\begin{aligned}
+& \left(\frac{1}{\tau}+\frac{S}{\epsilon^2}\right)\left(\phi^{n+1}-\phi^n\right)-\Delta \phi^{n+1}+\frac{1}{\epsilon^2} f\left(\phi^n\right)=0 \\
+& \left.\frac{\partial \phi^{n+1}}{\partial n}\right|_{\partial \Omega}=0
+\end{aligned}
+$$
+
+where $S$ is a stabilizing parameter to be specified. Then, for $S \geq L / 2$, the stabilized scheme is unconditionally energy stable for any time-step $\tau$ :
+
+$$
+E\left(\phi^{n+1}\right) \leq E\left(\phi^n\right), \quad \forall n \geq 0 .
+$$
+
+
+The spatial discretization method is adopted the Fourier-spectral approach with the Discrete Cosine Transform (DCT).
+
+\begin{itemize}
+    \item For two-dimensional case
+\end{itemize} 
+
+We take the model parameter $\epsilon=0.01$, computational domain $\Omega=(-1,1)^2$ and $t \in(0,10)$. The computational parameters are $S=5$ (stabilized parameter), $N_x=N_y=256$ (spatial grid) and $\tau=10^{-3}$ (time-step). We set the initial condition
+
+$$
+\phi(x, y, 0)=\tanh \left[\frac{1}{2 \epsilon}\left(\frac{2 r}{3}-\frac{1}{4}+\frac{1+\cos (6 \theta)}{16}\right)\right],
+$$
+
+with the polar coordinates $r=\sqrt{x^2+y^2}$ and $\theta=\arctan (y / x)$.
+The information for main code:
+\begin{itemize}
+    \item main code: Simulate.m
+    \item file name of the saved data: \begin{verbatim}
+        FullData_ACequ_2D.mat
+    \end{verbatim}
+    \item save data: xyN (grid points: $x y N(1,:)=x, x y N(2,:)=y$ ), tN (time-point information), phiN (Numerical solution $\phi_N^n$ for all time levels: phiN $=\phi(x, y, t(n))$ ), $\mathrm{fN}, \mathrm{FN}$ (energy potential $f N=f(\phi(x, y, t(n)))$ and $F N=F(\phi(x, y, t(n))))$, EN (energy value $\left.E\left(\phi_N^n\right)\right)$.
+\end{itemize}
+
+\newpage
+\subsubsection{Results}
+Numerical result for implementing the Algebraic equation-informed neural network by minimizing the loss \eqref{eq:l} with metrics \eqref{eq:p} and \eqref{eq:o} is shown below (\cref{tab:free energy derivative2}),
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+         \hline Name&  SincKAN&  Modified MLP& MLP\\
+         \hline $\phi ( \phi^2 - 1)$ &  7.31e-03 (relative mse: 2.00e+00)&  7.90e-03 (relative mse: 2.00e+00)& na\\
+         \hline
+    \end{tabular}
+    \caption{Approximation accuracy for fitting nonlinear term derivative in free energy using loss function \eqref{eq:l}}
+    \label{tab:free energy derivative2}
+\end{table}
+We suspect that part of the errors comes from the discretization errors in $(\phi_t)^{n}_{ij}$, $(\phi_{xx})^{n}_{ij}$ and $(\phi_{yy})^{n}_{ij}$ when generating the training data. Indeed, although the model SincKAN's predicted result only achieves $7.31e-03$ (relative mse: $2.00e+00$) accuracy when comparing to $f_{ground}$, the accuracy could reach $3.14e-06$ (relative mse: $3.99e-02$) when comparing to $f( \phi^{n}_{ij} ) = \epsilon^2 [(\phi_{xx})^{n}_{ij} + (\phi_{yy})^{n}_{ij} - \frac{1}{\gamma} (\phi_t)^{n}_{ij}]$ directly.  Therefore, we measure the errors between $f( \phi^{n}_{ij} ) = \epsilon^2 [(\phi_{xx})^{n}_{ij} + (\phi_{yy})^{n}_{ij} - \frac{1}{\gamma} (\phi_t)^{n}_{ij}]$ and \( f_{ground}( \phi^{n}_{ij} ) =  \phi^{n}_{ij} [(\phi^{n}_{ij})^{2} - 1] \) for some $50000$ randomly chosen training data points. The error is roughly $7.58e-03$, revealing non-negligible discretization errors for $(\phi_t)^{n}_{ij}$, $(\phi_{xx})^{n}_{ij}$ and $(\phi_{yy})^{n}_{ij}$.
+
+In this computational case, our training data are generated from numerical simulation where the free energy is known. Hence, we can set \( f( \phi^{n}_{ij} ) =  \phi^{n}_{ij} [(\phi^{n}_{ij})^{2} - 1] \) and directly minimize the loss function \( L = \frac{1}{M^{2}N} \sum^{N}_{n=1} \sum^{M}_{i,j=1} |f( \phi^{n}_{ij};\theta ) - f( \phi^{n}_{ij} )|^2 \). The result is presented below (\cref{tab:free energy derivative3}). In practical modeling, it is highly likely that the free energy of the phase field is unknown. So we need to be conservative about the results achieved using this training approach.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+         \hline Name&  SincKAN&  Modified MLP& MLP\\
+         \hline $\phi ( \phi^2 - 1)$ &  1.74e-10 (relative mse: 3.00e-04)&  4.31e-10 (relative mse: 4.73e-04)& na\\
+         \hline
+    \end{tabular}
+    \caption{Approximation accuracy for fitting nonlinear term derivative in free energy using loss function \( L = \frac{1}{M^{2}N} \sum^{N}_{n=1} \sum^{M}_{i,j=1} |f( \phi^{n}_{ij};\theta ) - \phi^{n}_{ij} [(\phi^{n}_{ij})^{2} - 1]|^2 \)}
+    \label{tab:free energy derivative3}
+\end{table}
+
+Hybrid method to learn the free energy: we first train a neural network $(t,x,y) \longrightarrow \phi(t,x,y)$ by using the data $\{ t^{n},x_{i},y_{j},\phi^{n}_{ij} \}^{n=1 \sim N}_{i,j=1 \sim M}$. Fitting accuracy is shown in \cref{tab:phitxy1}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+         \hline Name&  SincKAN&  Modified MLP& MLP\\
+         \hline $\phi$ &  1.08e-4 (relative mse: 1.05e-02)&  4.26e-6 (relative mse: 2.08e-03)& na\\
+         \hline
+    \end{tabular}
+    \caption{Learning $\phi(t,x,y)$ by utilizing neural networks}
+    \label{tab:phitxy1}
+\end{table}
+Since the fitting is reasonably precise, we then proceed to perform automatic differentiation (AD) and/or Finite difference method (FDM) to compute the derivatives. In order to measure the computation accuracy of derivatives, we compute the $l_2$ distance between $f( \phi^{n}_{ij} ) = \epsilon^2 [(\phi_{xx})^{n}_{ij} + (\phi_{yy})^{n}_{ij} - \frac{1}{\gamma} (\phi_t)^{n}_{ij}]$ and \( f_{ground}( \phi^{n}_{ij} ) =  \phi^{n}_{ij} [(\phi^{n}_{ij})^{2} - 1] \) for some $50000$ randomly chosen data points. The derivatives data are obtained by AD and FDM respectively:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+         \hline Name&  AD&  best FDM\\
+         \hline $l^2$ distance &  6.27e-05 &  4.36e-05\\
+         \hline
+    \end{tabular}
+    \caption{Accuracy of AD-generated derivatives and FDM-generated derivatives}
+    \label{tab:derivatives}
+\end{table}
+Having obtained the data \( \{t^{n}, x_{i}, y_{j}, \phi_{ij}^{n}, (\phi_{t})_{ij}^{n}, (\phi_{xx})_{ij}^{n}, (\phi_{yy})_{ij}^{n} \}^{n = 1 \sim N}_{i,j = 1 \sim M} \) by AD and FDM, we then proceed to apply algebraic-informed neural network method \cref{eq:loss}. Here is what we got:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+         \hline Name&  SincKAN&  Modified MLP& MLP\\
+         \hline $\phi (\phi^2 - 1)$ & na&  4.45e-05 (relative mse: 1.14e-01)& na\\
+         \hline
+    \end{tabular}
+    \caption{Approximating free energy derivative in Allen-Cahn equation (derivative data generated by AD)}
+    \label{tab:phitxy}
+\end{table}
+
+
+
+
+% % ------------------------------------------------------------------------
+
+
+% %%% Local Variables: 
+% %%% mode: latex
+% %%% TeX-master: "../thesis"
+% %%% End: 

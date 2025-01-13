@@ -1,0 +1,84 @@
+%%% Thesis Introduction --------------------------------------------------
+\chapter{Introduction}
+
+\section{Research Background}
+
+\subsection{Simulation intelligence: The Future Ahead}
+In the autumn of 2024, Swedish Royal Academy of Science announced the winners of the Nobel Prize of Chemistry: David Baker, Demis Hassabis and John M. Jumper for their contributions in protein structure prediction. The powerful AI tools for cracking the codes underlying the amazing protein structure are called "AlphaFold" and "AlphaFold2". These AI tools are based on deep learning algorithms and are able to predict the 3D structures of 200 millions known proteins from their amino acid sequences. As claimed by the committee of Nobel chemistry prize, AlphaFold2 is a groundbreaking revolution as it can help better understand antibiotic resistance and create images of enzymes that can break down plastics. Moreover, this series of protein structure prediction tools have already been updated to "AlphaFold3" which can predict structure of complexes formed by proteins with DNA, RNA, various ligands, and ions.
+
+Biological science is just one of many scientific disciplines benefiting from AI advancements. The advent of AI is driving exciting transformations in scientific research and its impact is extending beyond laboratories, deeply into our daily lives. If we act wisely, establish appropriate regulations, and adequately support innovative applications of AI to address the most pressing scientific issues, AI could revolutionize the scientific process.
+
+This vision is referred to as AI for Science. We envision a future driven by AI, where AI tools can free us from tedious and time-consuming tasks, guiding us toward innovative inventions and discoveries, and accelerating breakthroughs that would otherwise take decades to achieve. As Academician Weinan E from the Chinese Academy of Sciences said, the current stage of AI for Science is akin to the early days when quantum mechanics was first discovered.
+
+Since the Renaissance, scientific research has mainly followed two paradigms: the Keplerian paradigm and the Newtonian paradigm.
+
+\subsection*{The Keplerian Paradigm}
+The Keplerian paradigm is a data-driven approach, seeking scientific laws and solving practical problems through data analysis, exemplified by Kepler's laws of planetary motion. With the development of statistical methods and machine learning, data-driven research has become a very powerful tool, effectively helping us solve specific problems in scenarios lacking clear principles. However, these methods often have weaker explainability, making it difficult to understand the reasons behind the conclusions.
+
+\subsection*{The Newtonian Paradigm}
+The Newtonian paradigm is a first-principles-based approach aiming to discover fundamental principles of the physical world, exemplified by the theoretical work of Newton, Maxwell, Boltzmann, Einstein, Schrödinger, and others. The pursuit of first principles has largely driven the development of physics. In 1929, with the establishment of quantum mechanics, a significant turning point occurred: as Dirac declared, with quantum mechanics, except for some extreme cases, we have the fundamental principles needed for most engineering and natural sciences. Nevertheless, applying these principles to solve complex physical models in real-world scenarios often leads to intractable computational demands, leaving us with principles that are difficult to use effectively.
+
+Throughout the Enlightenment, Industrial Revolution, and up to today, these two paradigms have supported the evolution of human civilization, shaping our rich and splendid socio-economic society. In future development, AI can further accelerate and elevate progress within these paradigms.
+
+\section*{I. Model-Driven: AI Accelerates Computational Solutions}
+In the Newtonian paradigm, the first-principles-based research approach aims to understand things from the most basic level. Science has been mostly developed in part because of the desire to pursue first principles. As Quantum mechanics established in 1929, a significant turning point occurred: as Dirac declared, with quantum mechanics, except for some extreme cases (like nuclear physics), we have the first principles needed for most engineering and natural sciences. However, the mathematical equations describing the fundamental principles of quantum mechanics are very complicated to solve.
+
+One major difficulty is that it is a multi-body problem: with each added electron, the problem's dimensions increase by three. In practice, we often have to abandon strict elegant theories and adopt empirical, non-systematic approximate methods. The price we pay includes losing rigor and elegance, as well as the reliability and universality of the results.
+
+Over twenty years ago, the concept of multiscale, multi-physics modeling provided a glimmer of hope for solving this problem: by integrating insignificant degrees of freedom at smaller scales, more reliable microscopic models could be used to propose more effective algorithms for macroscopic processes of interest. However, different microscopic models themselves are not always reliable, and although multiscale methods can significantly reduce the time required for microscopic simulations, they still exceed current capabilities.
+
+This means we still need new approaches to physical modeling to address the "curse of dimensionality" problem. Paul Dirac, one of the pioneers of quantum mechanic, articulated this challenge by stating, "The fundamental physical laws essential for the mathematical framework of much of physics and all of chemistry are entirely understood; however, the challenge arises because the precise application of these laws results in equations that are far too complex to solve." In simpler terms, "we possess the key to unlock the doors of science, but we lack the strength to open them." This inability to push the door open is attributed to the "curse of dimensionality, "which denotes the exponential increase in computational costs as the dimensions of a problem expand.
+
+For example, the computational cost of solving potential functions using density functional theory (DFT) grows exponentially with the system size. Therefore, although DFT methods provide accuracy, they are challenging to implement for large-scale systems.
+
+The fundamental principles in physics are not only widely applicable but also simple and elegant. Schrödinger's equation is a prime example. However, as explained earlier, it is very difficult to solve the real world problems by using these models as well. Therefore, seeking simplified models has been an eternal theme in physics and all sciences. However, as we have experienced in turbulence models, if we do not adopt empirical approximations, it is usually very difficult to propose such simplified models.
+
+Machine learning is set to greatly enhance our ability to develop these physical models. This has already happened in three distinct ways. First, it provides tools that can help us realize the dream of multi-scale modeling, tools that were previously lacking. Second, it offers a framework for developing models directly from data. Third, following the idea of data assimilation, it provides a powerful tool for integrating physical models with observational data.
+
+However, fitting data is one thing, and building interpretable and truly reliable physical models is another. Let's first discuss interpretability. It is well known that machine learning models have a reputation for being "black boxes," which creates psychological barriers to using machine learning to help develop physical models. To overcome this barrier, we first need to recognize that interpretability is not absolute. For example, the Euler equations in aerodynamics have very clear interpretations because they only represent the conservation of mass, momentum, and energy.
+
+However, explaining the specifics of the state equations is another problem. In fact, the state equations of complex gases may be obtained by interpolating experimental data with splines and presented in the form of subroutines. We do not really care whether the coefficients of these spline functions are interpretable. The same principle should apply to machine-learning-based models. Our goal should be that the basic starting points and structure of these models are interpretable, while the specific forms of some functions representing constitutive relations in these models do not necessarily have to be interpretable.
+
+Now, let's discuss reliability. Ideally, we hope that machine-learning-based models are as reliable as ordinary physical models, such as the Navier-Stokes equations. To achieve this, two points are crucial. First, machine-learning-based models must satisfy all physical constraints, such as those derived from symmetries and conservation laws. Second, the data used to train the models must fully represent all physical states encountered in practice. Since labeling data is almost always very expensive, choosing a high-quality data set that is as small as possible yet fully representative is a very important part of the model development process.
+
+Numerous issues, including molecular dynamics and rarefied gas dynamics, have been effectively solved by using these concepts. For example, by combining machine learning with high-performance computing, we can simulate systems with billions of atoms with ab initio accuracy, resulting in a fivefold increase in efficiency compared to earlier approaches.
+
+Molecular dynamics has wide applications, such as predicting the properties of new nanomaterials by calculating the interactions between a large number of atoms. Traditional molecular dynamics relies on empirical force fields for potential function calculations, leading to inaccurate results; first-principles methods calculate using quantum mechanics models, though reliable, are inefficient and difficult to use on a large scale. Machine learning-based molecular dynamics methods use quantum mechanical models to provide training data, fit high-dimensional potential functions with deep neural networks, and thus ensure both accuracy and efficiency. This deep integration of physical models, machine learning, and high-performance computing presents immense imaginative space.
+
+\section*{II. Data-Driven: AI Handles Big Data in Science}
+
+Traditional data processing methods mainly target small-scale data, using statistical models to find patterns in the data. However, models built on small-scale data are limited by the data scale in their expressive ability, only capable of coarse-grained simulations and predictions, and become unsuitable when high accuracy is required. To further enhance model accuracy, it is necessary to utilize large-scale data for relevant models.
+
+Recently, the availability and quantity of data across various fields have significantly increased, providing the data foundation for solving this problem. However, as data volume increases, so does data noise, leading to a lower signal-to-noise ratio. Traditional data processing methods face the "curse of dimensionality" problem when dealing with massive data, meaning they cannot effectively use large-scale data to build high-precision models within a controllable time frame. New data processing methods are required to address the issue of dimensionality.
+
+The most successful example in this direction is AlphaFold2. The protein folding problem is a typical high-dimensional problem, and AlphaFold2 has fundamentally changed the technical approach to protein folding through AI, effectively solving this problem.
+
+\section*{III. Integration of Models and Data: AI for Science as a System Engineering}
+
+The third approach to realizing AI for Science is to deeply integrate model-driven and data-driven methods. In scientific fields, empirical "principles" can be extracted from "data," and "data" can be simulated using "principles." Therefore, in scientific fields, "data" and "principles" can be almost losslessly converted. This is a unique advantage of AI for Science compared to other fields like large language models (LLMs).
+
+This field faces many major challenges, such as "data assimilation," "synchronous learning of observations and models," "reinforcement learning," and "rational experiment design." Drawing from the successful experience of Langchain in the field of speech models, the process of integrating models and data in AI for Science is more like systematic engineering. It requires not only innovation at the principle level but also comprehensive changes from infrastructure to products to specific scenario interactions. Each scenario might require a large team to accomplish, which also means huge space and opportunities.
+
+\section*{IV. Science for AI: utilizing domain knowledge to improve AI algorithm and architecture}
+
+Despite significant breakthroughs, AI still faces major challenges, such as data scarcity, high energy consumption, and poor interpretability. Human scientists have accumulated vast knowledge across various disciplines. How to translate scientists' experience and knowledge—even intuition and heuristic ideas—into AI system capabilities has become a central focus of Science for AI research. Science for AI research can be categorized into two branches: (i). Math-inspired interpretable AI architectures, representative works include Kolmogorov-Arnold neural network. (ii). Physics-inspired interpretable AI architectures, examples include Possion Flow Generative Model. Other typical works of Science for AI include not only the Nobel Prize-winning Hopfield network and restricted Boltzmann machine but also Convolutional neural network inspired by visual architecture.
+
+\section{PhD research direction and impact}
+
+\subsection{Research direction}
+My PhD research will focus on advancing the field of AI for scientific computing $\&$ scientific simulations, with a particular emphasis on developing AI models for applications in multiphysics and multiscale modeling. Two key research directions will guide this work:
+
+1. Develop more precise and interpretable machine learning models that avoid common issues of traditional models, like spectral bias and excessive parameters. Specifically, aim to create models proficient at approximating singularly-behaved functions.
+
+2. Apply deep learning algorithms to address challenging scientific problems, such as solving fractional PDE, solving the Black–Scholes equations in option pricing, and learning phase-field equations.
+
+
+\subsection{Impact}
+My PhD research has the potential to strengthen the connection between deep learning and simulation science by developing math and physics-inspired machine learning model for scientific simulation. Machine learning and simulation science are intersecting and growing in importance at an accelerating pace. In the short term, advances in this area can facilitate development of more efficient, robust and interpretable machine learning methods. In the long term, new algorithms and technologies hold the potential to revolutionize numerous industries and address critical scientific challenges, including protein structure prediction, combustion modeling, and the design of new medicines and materials.
+%%% ----------------------------------------------------------------------
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../thesis"
+%%% End: 
